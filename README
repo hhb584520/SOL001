@@ -1,0 +1,4 @@
+cd vCPE_VFC
+./generate.sh sriov
+cd vCPE
+./generate.sh sriov

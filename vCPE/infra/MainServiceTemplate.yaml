@@ -9,88 +9,19 @@ description: vCPE_infra
 imports:
   - onap_dm.yaml
 
-node_types:
-  onap.vcpe_infra:
-    derived_from: tosca.nodes.nfv.VNF
-    properties:
-      descriptor_id:
-        type: string
-        constraints: [ valid_values: [ b1bb0ce7-1111-4fa7-95ed-4840d70a1177 ] ]
-        default: b1bb0ce7-1111-4fa7-95ed-4840d70a1177
-      provider:
-        type: string
-        constraints: [ valid_values: [ onap ] ]
-        default: onap
-      product_name:
-        type: string
-        constraints: [ valid_values: [ vcpe_infra ] ]
-        default: vcpe_infra
-      software_version:
-        type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
-      descriptor_version:
-        type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
-      flavour_id:
-        type: string
-        constraints: [ valid_values: [ simple ] ]  #only one and only allowed one DF in this example
-        default: simple
-      flavour_description:
-        type: string
-        default: ""
-      vnfm_info:
-        type: list
-        entry_schema:
-          type: string
-        default: ['gvnfm']
-    requirements:
-      - virtual_link_public_vaaa:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_private_vaaa:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_public_vdns:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_private_vdns:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_public_vdhcp:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_private_vdhcp:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_public_vweb:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_private_vweb:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
 
 topology_template:
-  substitution_mappings:
-    node_type: onap.vcpe_infra
-    requirements:
-      virtual_link_public_vaaa: [ Cp_vaaa_public, virtual_link ] # expose as external CP
-      virtual_link_private_vaaa: [ Cp_vaaa_onap_private, virtual_link ] # expose as external CP
-      virtual_link_public_vdns: [ Cp_vdns_public, virtual_link ]
-      virtual_link_private_vdns: [ Cp_vdns_onap_private, virtual_link ]
-      virtual_link_public_vdhcp: [ Cp_vdhcp_public, virtual_link ]
-      virtual_link_private_vdhcp: [ Cp_vdhcp_onap_private, virtual_link ]
-      virtual_link_public_vweb: [ Cp_vweb_public, virtual_link ]
-      virtual_link_private_vweb: [ Cp_vweb_onap_private, virtual_link ]
+#  substitution_mappings:
+#    node_type: onap.vcpe_infra
+#    requirements:
+#      virtual_link: [ Cp_vaaa_public, virtual_link ] # expose as external CP
+#      virtual_link: [ Cp_vaaa_onap_private, virtual_link ] # expose as external CP
+#      virtual_link: [ Cp_vdns_public, virtual_link ]
+#      virtual_link: [ Cp_vdns_onap_private, virtual_link ]
+#      virtual_link: [ Cp_vdhcp_public, virtual_link ]
+#      virtual_link: [ Cp_vdhcp_onap_private, virtual_link ]
+#      virtual_link: [ Cp_vweb_public, virtual_link ]
+#      virtual_link: [ Cp_vweb_onap_private, virtual_link ]
 
   inputs:
     vcpe_image_name:
@@ -220,9 +151,9 @@ topology_template:
 
   node_templates:
     LLU_VNF:
-      type: onap.vcpe_infra
+      type: tosca.nodes.nfv.VNF
       properties:
-        descriptor_id: b1bb0ce7-1111-4fa7-95ed-4840d70a1177
+        descriptor_id: b1bb0ce7-2222-4fa7-95ed-4840d70a1177
         provider: onap
         product_name: vcpe_infra
         software_version: '1.0'

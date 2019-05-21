@@ -9,58 +9,12 @@ description: vCPE_vgmux
 imports:
   - onap_dm.yaml
 
-node_types:
-  onap.vcpe_vgmux:
-    derived_from: tosca.nodes.nfv.VNF
-    properties:
-      descriptor_id:
-        type: string
-        constraints: [ valid_values: [ b1bb0ce7-3333-4fa7-95ed-4840d70a1177 ] ]
-        default: b1bb0ce7-3333-4fa7-95ed-4840d70a1177
-      provider:
-        type: string
-        constraints: [ valid_values: [ onap ] ]
-        default: onap
-      product_name:
-        type: string
-        constraints: [ valid_values: [ vcpe_vgmux ] ]
-        default: vcpe_vgmux
-      software_version:
-        type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
-      descriptor_version:
-        type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
-      flavour_id:
-        type: string
-        constraints: [ valid_values: [ simple ] ]  #only one and only allowed one DF in this example
-        default: simple
-      flavour_description:
-        type: string
-        default: ""
-      vnfm_info:
-        type: list
-        entry_schema:
-          type: string
-        default: ['gvnfm']
-    requirements:
-      - virtual_link_public:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-      - virtual_link_private:
-          capability: tosca.capabilities.nfv.VirtualLinkable
-          relationship: tosca.relationships.nfv.VirtualLinksTo
-          occurrences: [ 0, 1 ]
-
 topology_template:
-  substitution_mappings:
-    node_type: onap.vcpe_vgmux
-    requirements:
-      virtual_link_public: [ Cp_vgmux_public, virtual_link ] # expose as external CP
-      virtual_link_private: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
+#  substitution_mappings:
+#    node_type: onap.vcpe_vgmux
+#    requirements:
+#      virtual_link: [ Cp_vgmux_public, virtual_link ] # expose as external CP
+#      virtual_link: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
 
   inputs:
     vcpe_image_name:
@@ -70,11 +24,9 @@ topology_template:
     public_net_id:
       type: string
       description: public network id used during onap installation
-      default: external
     onap_private_net_id:
       type: string
       description: onap OAM network id
-      default: oam_onap
     onap_private_net_cidr:
       type: string
       description: oanp OAM network cidr
@@ -154,9 +106,9 @@ topology_template:
 
   node_templates:
     LLU_VNF:
-      type: onap.vcpe_vgmux
+      type: tosca.nodes.nfv.VNF
       properties:
-        descriptor_id: b1bb0ce7-3333-4fa7-95ed-4840d70a1177
+        descriptor_id: b1bb0ce7-2222-4fa7-95ed-4840d70a1177
         provider: onap
         product_name: vcpe_vgmux
         software_version: '1.0'
@@ -164,6 +116,7 @@ topology_template:
         flavour_id: simple
         flavour_description: simple
         vnfm_info: ['gvnfm']
+
 
     #onap public net
 #    VL_public:
