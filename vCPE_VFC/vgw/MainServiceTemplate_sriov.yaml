@@ -82,7 +82,7 @@ topology_template:
     mux_gw_private_net_id:
       type: string
       description: Private network that connects vGMUX to vGWs
-      default: zdfw1muxgw01_private
+      default: shared-sriov
     mux_gw_private_net_cidr:
       type: string
       description: he CIDR of the vGMUX private network
@@ -228,7 +228,7 @@ topology_template:
                 cidr: { get_input: mux_gw_private_net_cidr }
                 dhcp_enabled: false
               l2_protocol_data:
-                physical_network: "physnet1"
+                physical_network: "shared-1"
 
     #cpe public network
     VL_cpe_public:
