@@ -90,7 +90,7 @@ topology_template:
     cpe_public_net_id:
       type: string
       description: cpe public net name
-      default: zdfw1cpe01_public
+      default: oam_zte
     cpe_public_net_cidr:
       type: string
       description: cpe public net cidr
