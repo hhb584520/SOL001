@@ -46,6 +46,6 @@ topology_template:
           min_bit_rate_requirements:
             root: 10000000
             leaf: 10000000
-          networkName: oam-zte
-          cidr: 172.30.23.0/24
+          networkName: oam-onap
+          cidr: 10.0.0.0/16
           dhcpEnabled: false
