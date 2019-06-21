@@ -2,7 +2,22 @@ metadata:
     vnf_product_name: vcpe_vgw
     vnf_provider_id: ONAP
     vnf_package_version: 1.0
-    vnf_release_data_time: 2018.05.06T13:00+08:00
+    vnf_release_date_time: 2018.05.06T13:00+08:00
 
 Source: MainServiceTemplate.yaml
+Source: MainServiceTemplate.mf
+Source: Definitions/MainServiceTemplate.yaml
+Source: Definitions/onap_dm.yaml
+Source: Artifacts/Deployment/OTHER/authorized_keys
+Source: Artifacts/Deployment/OTHER/id_rsa
+Source: Artifacts/Deployment/OTHER/id_rsa.pub
+Source: Artifacts/Deployment/OTHER/image
+Source: Artifacts/Deployment/OTHER/vnf.csar
 
+non_mano_artifact_sets:
+onap_others:
+Source: Artifacts/Deployment/OTHER/authorized_keys
+Source: Artifacts/Deployment/OTHER/id_rsa
+Source: Artifacts/Deployment/OTHER/id_rsa.pub
+Source: Artifacts/Deployment/OTHER/image
+Source: Artifacts/Deployment/OTHER/vnf.csar
