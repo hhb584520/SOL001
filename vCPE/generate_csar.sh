@@ -49,3 +49,10 @@ for dir in $DIRS; do
     cd $ROOT_DIR/$dir
     rm -r $ROOT_DIR/$dir/tmp
 done
+
+
+if [ $1 ] && [ $1 == "sriov" ]; then
+    mv $ROOT_DIR/*.csar $ROOT_DIR/csar_files/sriov/
+else
+    cp $ROOT_DIR/*.csar $ROOT_DIR/csar_files/default/
+fi
