@@ -72,3 +72,9 @@ for ns_type in $ns_types; do
     mv $ROOT_DIR/ns/$ns_type.csar $DEST
     rm -r $ROOT_DIR/ns/tmp
 done
+
+if [ $1 ] && [ $1 == "sriov" ]; then
+    mv $ROOT_DIR/*.csar $ROOT_DIR/csar_files/sriov/
+else
+    mv $ROOT_DIR/*.csar $ROOT_DIR/csar_files/default/
+fi

@@ -37,7 +37,11 @@ for dir in $DIRS; do
     cp -r $ROOT_DIR/Definitions tmp/
     cp -r $ROOT_DIR/TOSCA-Metadata tmp/
     cp tmp/MainServiceTemplate.yaml tmp/Definitions/
-    cp $ROOT_DIR/../vCPE_VFC/$dir.csar tmp/Artifacts/Deployment/OTHER/vnf.csar
+    if [ $1 ] && [ $1 == "sriov" ]; then
+        cp $ROOT_DIR/../vCPE_VFC/csar_files/$1/$dir.csar tmp/Artifacts/Deployment/OTHER/vnf.csar
+    else
+        cp $ROOT_DIR/../vCPE_VFC/csar_files/default/$dir.csar tmp/Artifacts/Deployment/OTHER/vnf.csar
+    fi
     cd $ROOT_DIR/$dir/tmp
 
     # create the csar file
@@ -54,5 +58,5 @@ done
 if [ $1 ] && [ $1 == "sriov" ]; then
     mv $ROOT_DIR/*.csar $ROOT_DIR/csar_files/sriov/
 else
-    cp $ROOT_DIR/*.csar $ROOT_DIR/csar_files/default/
+    mv $ROOT_DIR/*.csar $ROOT_DIR/csar_files/default/
 fi
