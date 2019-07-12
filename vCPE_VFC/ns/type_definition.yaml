@@ -159,7 +159,7 @@ node_types:
       - virtual_link:
           capability: tosca.capabilities.nfv.VirtualLinkable
           relationship: tosca.relationships.nfv.VirtualLinksTo
-          node: tosca.nodes.nfv.VnfVirtualLink
+          node: tosca.nodes.nfv.NsVirtualLink
           occurrences: [ 0, UNBOUNDED ]
     #interfaces:
     #  Nfv:
