@@ -303,6 +303,7 @@ topology_template:
             support_mandatory: true
             network_interface_requirements:
               dataProcessingAccelerationLibrary: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "DPDK"}'
+              dataProcessingAccelerationLibraryVersion: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "v17.02"}'
       requirements:
         - virtual_binding: VDU_vgw_0
         - virtual_link: VL_mux_gw_private_net
