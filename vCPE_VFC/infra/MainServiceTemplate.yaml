@@ -104,7 +104,7 @@ topology_template:
     onap_private_net_id:
       type: string
       description: onap OAM network id
-      default: oam_onap
+      default: oam-onap
     onap_private_net_cidr:
       type: string
       description: oanp OAM network cidr
@@ -233,24 +233,24 @@ topology_template:
 
 
     #onap public net
-#    VL_public:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: public_net_id }
-#
+    VL_public:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: public_net_id }
+
 #    #onap oam net
 #    VL_onap_private:
 #      type: tosca.nodes.nfv.VnfVirtualLink
@@ -328,7 +328,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vaaa_0
-#        - virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vaaa_onap_private:
       type: tosca.nodes.nfv.VduCp
@@ -453,7 +453,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vdns_0
-#        - virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vdns_onap_private:
       type: tosca.nodes.nfv.VduCp
@@ -574,7 +574,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vdhcp_0
-#        - virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vdhcp_onap_private:
       type: tosca.nodes.nfv.VduCp
@@ -699,7 +699,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vweb_0
-#        - virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vweb_onap_private:
       type: tosca.nodes.nfv.VduCp

@@ -60,7 +60,7 @@ topology_template:
     node_type: onap.vcpe_vgmux
     requirements:
       virtual_link_public: [ Cp_vgmux_public, virtual_link ] # expose as external CP
-      virtual_link_private: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
+      # virtual_link_private: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
 
   inputs:
     vcpe_image_name:
@@ -74,7 +74,7 @@ topology_template:
     onap_private_net_id:
       type: string
       description: onap OAM network id
-      default: oam_onap
+      default: oam-onap
     onap_private_net_cidr:
       type: string
       description: oanp OAM network cidr
@@ -166,24 +166,24 @@ topology_template:
         vnfm_info: ['gvnfm']
 
     #onap public net
-#    VL_public:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: public_net_id }
-#
+    VL_public:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: public_net_id }
+
 #    #onap oam net
 #    VL_onap_private:
 #      type: tosca.nodes.nfv.VnfVirtualLink
@@ -261,7 +261,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vgmux_0
-        #- virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vgmux_onap_private:
       type: tosca.nodes.nfv.VduCp
@@ -300,6 +300,7 @@ topology_template:
             support_mandatory: true
             network_interface_requirements:
               dataProcessingAccelerationLibrary: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "DPDK"}'
+              dataProcessingAccelerationLibraryVersion: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "v17.02"}'
       requirements:
         - virtual_binding: VDU_vgmux_0
         - virtual_link: VL_bng_gmux_private_net
@@ -323,6 +324,7 @@ topology_template:
             support_mandatory: true
             network_interface_requirements:
               dataProcessingAccelerationLibrary: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "DPDK"}'
+              dataProcessingAccelerationLibraryVersion: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "v17.02"}'
       requirements:
         - virtual_binding: VDU_vgmux_0
         - virtual_link: VL_mux_gw_private_net
@@ -393,7 +395,7 @@ topology_template:
               virtual_mem_size: 4096 MB
               vdu_mem_requirements:
                 memoryPageSize: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "2 MB"}'
-                numberOfPages: '{"schemaVersion": "0","schemaSelector": "","hardwarePlatform": "generic","mandatory": "true", "configurationValue": "1024"}'
+                numberOfPages: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "1024"}'
             virtual_cpu:
               num_virtual_cpu: 2
               cpu_architecture: generic
@@ -404,4 +406,3 @@ topology_template:
           #file: { get_input: vcpe_image_name }
           file: ../Artifacts/Deployment/OTHER/image
           type: tosca.artifacts.nfv.SwImage
-

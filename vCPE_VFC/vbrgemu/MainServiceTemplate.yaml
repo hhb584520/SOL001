@@ -69,7 +69,7 @@ topology_template:
     onap_private_net_id:
       type: string
       description: onap OAM network id
-      default: oam_onap
+      default: oam-onap
     onap_private_net_cidr:
       type: string
       description: oanp OAM network cidr
@@ -142,24 +142,24 @@ topology_template:
 
 
     #onap public net
-#    VL_public:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: public_net_id }
-#
+    VL_public:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: public_net_id }
+
 #    #onap oam net
 #    VL_onap_private:
 #      type: tosca.nodes.nfv.VnfVirtualLink
@@ -216,7 +216,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vbrgemu_0
-        #- virtual_link: VL_public
+        - virtual_link: VL_public
 
     Cp_vbrgemu_vbrgemu_bng_private_net:
       type: tosca.nodes.nfv.VduCp
@@ -237,6 +237,7 @@ topology_template:
             support_mandatory: true
             network_interface_requirements:
               dataProcessingAccelerationLibrary: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "DPDK"}'
+              dataProcessingAccelerationLibraryVersion: '{"schemaVersion": "0", "schemaSelector": "", "hardwarePlatform": "generic", "mandatory": "true", "configurationValue": "v17.02"}'
       requirements:
         - virtual_binding: VDU_vbrgemu_0
         - virtual_link: VL_vbrgemu_bng_private_net
