@@ -251,25 +251,25 @@ topology_template:
                 ip_version: ipv4
                 name: { get_input: public_net_id }
 
-#    #onap oam net
-#    VL_onap_private:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: onap_private_net_id }
-#                cidr: { get_input: onap_private_net_cidr }
+    #onap oam net
+    VL_onap_private:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: onap_private_net_id }
+                cidr: { get_input: onap_private_net_cidr }
 
     #cpe signal network
     VL_cpe_signal:
@@ -346,7 +346,7 @@ topology_template:
                     - { get_input: vaaa_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vaaa_0
-#        - virtual_link: VL_onap_private
+        - virtual_link: VL_onap_private
 
     Cp_vaaa_cpe_signal:
       type: tosca.nodes.nfv.VduCp
@@ -471,7 +471,7 @@ topology_template:
                     - { get_input: vdns_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vdns_0
-        #- virtual_link: VL_onap_private
+        - virtual_link: VL_onap_private
 
     Cp_vdns_cpe_public:
       type: tosca.nodes.nfv.VduCp
@@ -592,7 +592,7 @@ topology_template:
                     - { get_input: vdhcp_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vdhcp_0
-#        - virtual_link: VL_onap_private
+        - virtual_link: VL_onap_private
 
     Cp_vdhcp_cpe_signal:
       type: tosca.nodes.nfv.VduCp
@@ -717,7 +717,7 @@ topology_template:
                     - { get_input: vweb_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vweb_0
-#        - virtual_link: VL_onap_private
+        - virtual_link: VL_onap_private
 
     Cp_vweb_cpe_public:
       type: tosca.nodes.nfv.VduCp

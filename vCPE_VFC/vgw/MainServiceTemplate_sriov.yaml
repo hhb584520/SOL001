@@ -60,7 +60,7 @@ topology_template:
     node_type: onap.vcpe_vgw
     requirements:
       virtual_link_public: [ Cp_vgw_public, virtual_link ] # expose as external CP
-      # virtual_link_private: [ Cp_vgw_onap_private, virtual_link ] # expose as external CP
+      virtual_link_private: [ Cp_vgw_onap_private, virtual_link ] # expose as external CP
 
   inputs:
     vcpe_image_name:
@@ -187,25 +187,25 @@ topology_template:
                 ip_version: ipv4
                 name: { get_input: public_net_id }
 
-#    #onap oam net
-#    VL_onap_private:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: onap_private_net_id }
-#                cidr: { get_input: onap_private_net_cidr }
+    #onap oam net
+    VL_onap_private:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: onap_private_net_id }
+                cidr: { get_input: onap_private_net_cidr }
 
     #Private network that connects vGMUX to vGWs
     VL_mux_gw_private_net:
@@ -268,23 +268,23 @@ topology_template:
         - virtual_binding: VDU_vgw_0
         - virtual_link: VL_public
 
-#    Cp_vgw_onap_private:
-#      type: tosca.nodes.nfv.VduCp
-#      properties:
-#        layer_protocols: [ipv4]
-#        trunk_mode: false
-#        protocol:
-#          - associated_layer_protocol: ipv4
-#            address_data:
-#              - address_type: ip_address
-#                l3_address_data:
-#                  ip_address_assignment: false
-#                  floating_ip_activated: false
-#                  fixed_ip_address:
-#                    - { get_input: vgw_private_ip_1 }
-#      requirements:
-#        - virtual_binding: VDU_vgw_0
-#        #- virtual_link: VL_onap_private
+    Cp_vgw_onap_private:
+      type: tosca.nodes.nfv.VduCp
+      properties:
+        layer_protocols: [ipv4]
+        trunk_mode: false
+        protocol:
+          - associated_layer_protocol: ipv4
+            address_data:
+              - address_type: ip_address
+                l3_address_data:
+                  ip_address_assignment: false
+                  floating_ip_activated: false
+                  fixed_ip_address:
+                    - { get_input: vgw_private_ip_1 }
+      requirements:
+        - virtual_binding: VDU_vgw_0
+        - virtual_link: VL_onap_private
 
     Cp_vgw_mux_gw_private_net:
       type: tosca.nodes.nfv.VduCp

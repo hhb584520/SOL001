@@ -105,3 +105,20 @@ topology_template:
           networkName: external
           cidr: 172.30.23.0/24
           dhcpEnabled: false
+
+    onap_privatec_net:
+      type: tosca.nodes.nfv.NsVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocol: ipv4
+        version: 1.0.0
+        vl_profile:
+          max_bit_rate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bit_rate_requirements:
+            root: 10000000
+            leaf: 10000000
+          networkName: oam-onap
+          cidr: 10.0.0.0/16
+          dhcpEnabled: false

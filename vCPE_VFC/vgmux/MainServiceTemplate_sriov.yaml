@@ -60,7 +60,7 @@ topology_template:
     node_type: onap.vcpe_vgmux
     requirements:
       virtual_link_public: [ Cp_vgmux_public, virtual_link ] # expose as external CP
-      # virtual_link_private: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
+      virtual_link_private: [ Cp_vgmux_onap_private, virtual_link ] # expose as external CP
 
   inputs:
     vcpe_image_name:
@@ -184,25 +184,25 @@ topology_template:
                 ip_version: ipv4
                 name: { get_input: public_net_id }
 
-#    #onap oam net
-#    VL_onap_private:
-#      type: tosca.nodes.nfv.VnfVirtualLink
-#      properties:
-#        connectivity_type:
-#          layer_protocols: [ipv4]
-#        vl_profile:
-#          max_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          min_bitrate_requirements:
-#            root: 10000000
-#            leaf: 10000000
-#          virtual_link_protocol_data:
-#            - associated_layer_protocol: ipv4
-#              l3_protocol_data:
-#                ip_version: ipv4
-#                name: { get_input: onap_private_net_id }
-#                cidr: { get_input: onap_private_net_cidr }
+    #onap oam net
+    VL_onap_private:
+      type: tosca.nodes.nfv.VnfVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocols: [ipv4]
+        vl_profile:
+          max_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bitrate_requirements:
+            root: 10000000
+            leaf: 10000000
+          virtual_link_protocol_data:
+            - associated_layer_protocol: ipv4
+              l3_protocol_data:
+                ip_version: ipv4
+                name: { get_input: onap_private_net_id }
+                cidr: { get_input: onap_private_net_cidr }
 
     #Private network that connects vBNG to vGMUX
     VL_bng_gmux_private_net:
@@ -283,7 +283,7 @@ topology_template:
                     - { get_input: vgmux_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vgmux_0
-        #- virtual_link: VL_onap_private
+        - virtual_link: VL_onap_private
 
     Cp_vgmux_bng_gmux_private_net:
       type: tosca.nodes.nfv.VduCp
