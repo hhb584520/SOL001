@@ -20,7 +20,7 @@ topology_template:
 
   node_templates:
     vgw:
-      type: tosca.nodes.nfv.VNF
+      type: onap.vcpe_vgw
       properties:
         descriptor_id: b1bb0ce7-2222-4fa7-95ed-4840d70a1177
         provider: onap
@@ -35,7 +35,7 @@ topology_template:
         - virtual_link_private: onap_private_net
 
     vgmux:
-      type: tosca.nodes.nfv.VNF
+      type: onap.vcpe_vgmux
       properties:
         descriptor_id: b1bb0ce7-3333-4fa7-95ed-4840d70a1177
         provider: onap
@@ -50,7 +50,7 @@ topology_template:
         - virtual_link_private: onap_private_net
 
     vcpe_infra:
-      type: tosca.nodes.nfv.VNF
+      type: onap.vcpe_infra
       properties:
         descriptor_id: b1bb0ce7-1111-4fa7-95ed-4840d70a1177
         provider: onap
@@ -61,11 +61,17 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link_public: vcpe_public_net
-        - virtual_link_private: onap_private_net
+        - virtual_link_public_vaaa: vcpe_public_net
+        - virtual_link_private_vaaa: onap_private_net
+        - virtual_link_public_vdns: vcpe_public_net
+        - virtual_link_private_vdns: onap_private_net
+        - virtual_link_public_vdhcp: vcpe_public_net
+        - virtual_link_private_vdhcp: onap_private_net
+        - virtual_link_public_vweb: vcpe_public_net
+        - virtual_link_private_vweb: onap_private_net
 
     vcpe_vbng:
-      type: tosca.nodes.nfv.VNF
+      type: onap.vcpe_vbng
       properties:
         descriptor_id: b1bb0ce7-5555-4fa7-95ed-4840d70a1177
         provider: onap
@@ -80,7 +86,7 @@ topology_template:
         - virtual_link_private: onap_private_net
 
     vcpe_vbrgemu:
-      type: tosca.nodes.nfv.VNF
+      type: onap.vcpe_vbrgemu
       properties:
         descriptor_id: b1bb0ce7-4444-4fa7-95ed-4840d70a1177
         provider: onap
