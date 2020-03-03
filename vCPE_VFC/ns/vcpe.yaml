@@ -31,7 +31,8 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link: vcpe_public_net
+        - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vgmux:
       type: tosca.nodes.nfv.VNF
@@ -45,7 +46,8 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link: vcpe_public_net
+        - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vcpe_infra:
       type: tosca.nodes.nfv.VNF
@@ -59,7 +61,8 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link: vcpe_public_net
+        - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vcpe_vbng:
       type: tosca.nodes.nfv.VNF
@@ -73,7 +76,8 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link: vcpe_public_net
+        - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vcpe_vbrgemu:
       type: tosca.nodes.nfv.VNF
@@ -87,7 +91,8 @@ topology_template:
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
-        - virtual_link: vcpe_public_net
+        - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vcpe_public_net:
       type: tosca.nodes.nfv.NsVirtualLink
@@ -106,7 +111,7 @@ topology_template:
           cidr: 172.30.23.0/24
           dhcpEnabled: false
 
-    onap_privatec_net:
+    onap_private_net:
       type: tosca.nodes.nfv.NsVirtualLink
       properties:
         connectivity_type:
