@@ -98,7 +98,6 @@ topology_template:
         vnfm_info: ['gvnfmdriver']
       requirements:
         - virtual_link_public: vcpe_public_net
-        - virtual_link_private: onap_private_net
 
     vcpe_public_net:
       type: tosca.nodes.nfv.NsVirtualLink
