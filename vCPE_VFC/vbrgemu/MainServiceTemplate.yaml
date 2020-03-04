@@ -188,7 +188,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vbrgemu_0
-        - virtual_link: VL_public
+#        - virtual_link: VL_public
 
     Cp_vbrgemu_vbrgemu_bng_private_net:
       type: tosca.nodes.nfv.VduCp

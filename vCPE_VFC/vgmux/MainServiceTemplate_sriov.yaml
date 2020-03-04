@@ -265,7 +265,7 @@ topology_template:
                   floating_ip_activated: false
       requirements:
         - virtual_binding: VDU_vgmux_0
-        - virtual_link: VL_public
+#        - virtual_link: VL_public
 
     Cp_vgmux_onap_private:
       type: tosca.nodes.nfv.VduCp
@@ -283,7 +283,7 @@ topology_template:
                     - { get_input: vgmux_private_ip_1 }
       requirements:
         - virtual_binding: VDU_vgmux_0
-        - virtual_link: VL_onap_private
+#        - virtual_link: VL_onap_private
 
     Cp_vgmux_bng_gmux_private_net:
       type: tosca.nodes.nfv.VduCp
