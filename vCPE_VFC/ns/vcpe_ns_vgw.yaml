@@ -28,12 +28,12 @@ node_types:
         default: vcpe_vgw
       software_version:
         type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
+        constraints: [ valid_values: [ '1.0.0' ] ]
+        default: '1.0.0'
       descriptor_version:
         type: string
-        constraints: [ valid_values: [ '1.0' ] ]
-        default: '1.0'
+        constraints: [ valid_values: [ '1.0.0' ] ]
+        default: '1.0.0'
       flavour_id:
         type: string
         constraints: [ valid_values: [ simple ] ]  #only one and only allowed one DF in this example
@@ -55,7 +55,7 @@ node_types:
           capability: tosca.capabilities.nfv.VirtualLinkable
           relationship: tosca.relationships.nfv.VirtualLinksTo
           occurrences: [ 0, 1 ]
-
+          
 topology_template:
   node_templates:
     vgw:
@@ -64,13 +64,14 @@ topology_template:
         descriptor_id: b1bb0ce7-2222-4fa7-95ed-4840d70a1177
         provider: onap
         product_name: vcpe_vgw
-        software_version: '1.0'
-        descriptor_version: '1.0'
+        software_version: '1.0.0'
+        descriptor_version: '1.0.0'
         flavour_id: simple
         flavour_description: simple
         vnfm_info: ['gvnfmdriver']
       requirements:
         - virtual_link_public: vcpe_public_net
+        - virtual_link_private: onap_private_net
 
     vcpe_public_net:
       type: tosca.nodes.nfv.NsVirtualLink
@@ -86,5 +87,22 @@ topology_template:
             root: 10000000
             leaf: 10000000
           networkName: external
+          cidr: 172.30.23.0/24
+          dhcpEnabled: false
+
+    onap_private_net:
+      type: tosca.nodes.nfv.NsVirtualLink
+      properties:
+        connectivity_type:
+          layer_protocol: ipv4
+        version: 1.0.0
+        vl_profile:
+          max_bit_rate_requirements:
+            root: 10000000
+            leaf: 10000000
+          min_bit_rate_requirements:
+            root: 10000000
+            leaf: 10000000
+          networkName: oam-onap
           cidr: 10.0.0.0/16
           dhcpEnabled: false

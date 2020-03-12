@@ -67,18 +67,18 @@ topology_template:
       type: string
       description: image name for vcpe in openstack glance
       default: ubuntu_16.04
-#    public_net_id:
-#      type: string
-#      description: public network id used during onap installation
-#      default: external
-#    onap_private_net_id:
-#      type: string
-#      description: onap OAM network id
-#      default: oam-onap
-#    onap_private_net_cidr:
-#      type: string
-#      description: oanp OAM network cidr
-#      default: 10.0.0.0/16
+    public_net_id:
+      type: string
+      description: public network id used during onap installation
+      default: external
+    onap_private_net_id:
+      type: string
+      description: onap OAM network id
+      default: oam-onap
+    onap_private_net_cidr:
+      type: string
+      description: oanp OAM network cidr
+      default: 10.0.0.0/16
     mux_gw_private_net_id:
       type: string
       description: Private network that connects vGMUX to vGWs
